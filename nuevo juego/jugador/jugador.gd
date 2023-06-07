@@ -11,7 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("ui_left"):
+	if Input.is_action_pressed("ui_left"):
 		position.x += -120 * delta
 	if Input.is_action_pressed("ui_right"):
 		position.x += 120 * delta
@@ -31,5 +31,30 @@ func _process(delta):
 		
 #	position.x =clamp(position.x,0,480)	
 #	position.y =clamp(position.x,0,480)
+	if Input.is_action_pressed("ui_left") == true:
+		get_node("AnimatedSprite").play("run")
+		$AnimatedSprite.play("run")
+		$AnimatedSprite.flip_h = true
+	elif Input.is_action_pressed("ui_right") == true:
+		get_node("AnimatedSprite").play("run")
+		$AnimatedSprite.play("run")
+		$AnimatedSprite.flip_h = false
+	elif Input.is_action_just_pressed("ui_up") == true:
+		get_node("AnimatedSprite").play("run")
+		$AnimatedSprite.play("run")
+	elif Input.is_action_just_pressed("ui_dow") == true:
+		get_node("AnimatedSprite").play("run")
+		$AnimatedSprite.play("run")
+	else:
+		$AnimatedSprite.play("ible")
+		
 	
+		
+
+
+func _on_jugador_area_entered(area):
+	if area.is_in_group("gem"):
+		area.pickup()
+		
+		$AudioStreamPlayer.play()
 		
