@@ -1,6 +1,6 @@
 extends Area2D
 
-
+signal picked
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,13 +12,13 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_pressed("ui_left"):
-		position.x += -120 * delta
+		position.x += -220 * delta
 	if Input.is_action_pressed("ui_right"):
-		position.x += 120 * delta
+		position.x += 220 * delta
 	if Input.is_action_pressed("ui_up"):
-		position.y += -120 * delta
+		position.y += -220 * delta
 	if Input.is_action_pressed("ui_down"):
-		position.y += 120 * delta
+		position.y += 220 * delta
 		
 	if position.x <= 0:
 		position.x = 0
@@ -39,10 +39,10 @@ func _process(delta):
 		get_node("AnimatedSprite").play("run")
 		$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = false
-	elif Input.is_action_just_pressed("ui_up") == true:
+	elif Input.is_action_pressed("ui_up") == true:
 		get_node("AnimatedSprite").play("run")
 		$AnimatedSprite.play("run")
-	elif Input.is_action_just_pressed("ui_dow") == true:
+	elif Input.is_action_pressed("ui_down") == true:
 		get_node("AnimatedSprite").play("run")
 		$AnimatedSprite.play("run")
 	else:
@@ -55,6 +55,9 @@ func _process(delta):
 func _on_jugador_area_entered(area):
 	if area.is_in_group("gem"):
 		area.pickup()
-		
+		emit_signal("picked")
 		$AudioStreamPlayer.play()
 		
+func game_over():
+	set_process(false)
+	$AnimatedSprite.play("hurt")
