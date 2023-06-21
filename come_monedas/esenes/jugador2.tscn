@@ -52,7 +52,7 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 7.0625 )
 
-[node name="jugador2" type="KinematicBody2D"]
+[node name="jugador2" type="KinematicBody2D" groups=["jug"]]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="Sprite" parent="."]

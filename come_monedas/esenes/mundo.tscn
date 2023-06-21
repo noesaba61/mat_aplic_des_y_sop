@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://esenes/jugador2.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Rocky Roads/Rocky Roads/Tilesets/tileset_forest.png" type="Texture" id=2]
 [ext_resource path="res://Rocky Roads/Rocky Roads/Backgrounds/trees.png" type="Texture" id=3]
 [ext_resource path="res://Rocky Roads/Rocky Roads/Objects/coin_gold.png" type="Texture" id=4]
 [ext_resource path="res://esenes/moneda.tscn" type="PackedScene" id=5]
+[ext_resource path="res://esenes/HUD.gd" type="Script" id=6]
+[ext_resource path="res://esenes/mundo.gd" type="Script" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -161,12 +163,14 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 7/z_index = 0
 
 [node name="mundo" type="Node2D"]
+script = ExtResource( 7 )
 
 [node name="Trees" type="Sprite" parent="."]
 position = Vector2( 608, 370 )
 texture = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2( 0, 1 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -178,25 +182,48 @@ current = true
 zoom = Vector2( 0.25, 0.25 )
 
 [node name="moneda" parent="TileMap" instance=ExtResource( 5 )]
-position = Vector2( 532, 383 )
+position = Vector2( 535, 381 )
 
 [node name="moneda2" parent="TileMap" instance=ExtResource( 5 )]
-position = Vector2( 597, 383 )
-
-[node name="moneda3" parent="TileMap" instance=ExtResource( 5 )]
-position = Vector2( 624, 382 )
-
-[node name="moneda4" parent="TileMap" instance=ExtResource( 5 )]
-position = Vector2( 700, 385 )
-
-[node name="moneda5" parent="TileMap" instance=ExtResource( 5 )]
-position = Vector2( 723, 384 )
+position = Vector2( 584, 375 )
 
 [node name="jugador2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 575, 316 )
 
-[node name="moneda" parent="." instance=ExtResource( 5 )]
-position = Vector2( 559, 382 )
+[node name="HUD" type="Control" parent="."]
+margin_left = 490.0
+margin_top = 288.0
+margin_right = 735.0
+margin_bottom = 315.0
+script = ExtResource( 6 )
 
-[node name="moneda2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 601, 303 )
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchor_right = 0.4
+anchor_bottom = 0.55
+margin_left = 125.0
+margin_top = 2.0
+margin_right = 148.8
+margin_bottom = 15.4
+
+[node name="LabelScore" type="Label" parent="HUD/MarginContainer"]
+margin_top = 7.0
+margin_right = 121.0
+margin_bottom = 21.0
+text = "score"
+
+[node name="Label" type="Label" parent="HUD/MarginContainer"]
+margin_top = 7.0
+margin_right = 121.0
+margin_bottom = 21.0
+text = "0"
+align = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+__meta__ = {
+"_editor_description_": "0"
+}
+
+[connection signal="picked" from="TileMap/moneda" to="." method="_on_moneda_picked"]
+[connection signal="picked" from="TileMap/moneda2" to="." method="_on_moneda2_picked"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
