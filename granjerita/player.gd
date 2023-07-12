@@ -3,7 +3,7 @@ extends KinematicBody2D
 var speed = 150
 var velocity = Vector2(0,0)
 var gravity = 300
-var jump = -250
+var jump = -280
 
 enum {RUN, IDLE, HURT, JUMP}
 
@@ -15,29 +15,31 @@ func transition_to(new_state):
 	state = new_state
 	match state:
 		RUN:
-			new_animation = "run"
+			new_animation = "RUN"
 		IDLE:
-			new_animation = "idle"
+			new_animation = "IDLE"
 		HURT:
-			new_animation = "hurt"
+			new_animation = "HURT"
 		JUMP:
-			new_animation = "jump"
+			new_animation = "JUMP"
 	
 func _ready():
 	transition_to(IDLE)
+	
+	
 func _physics_process(delta):
 	if current_animation != new_animation:
 		current_animation = new_animation
-		$AnimationPlayer.play(current_animation)
+		$AnimatedSprite.play(current_animation)
 	
 	velocity.x = 0
 	velocity.y += gravity * delta
 	if Input.is_action_pressed("ui_right"):
 		velocity.x += speed
-		$playerSheet.flip_h = false
+		$AnimatedSprite.flip_h = false
 	elif Input.is_action_pressed("ui_left"):
 		velocity.x -= speed
-		$playerSheet.flip_h = true
+		$AnimatedSprite.flip_h = true
 	if is_on_floor() and Input.is_action_just_pressed("ui_accept"):
 		velocity.y =jump
 		transition_to(JUMP)

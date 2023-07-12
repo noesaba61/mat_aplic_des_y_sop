@@ -1,122 +1,60 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
-[ext_resource path="res://28059__2_-removebg-preview.png" type="Texture" id=2]
+[ext_resource path="res://ACCESS/RUN/IMG4.png" type="Texture" id=2]
+[ext_resource path="res://ACCESS/JUMP/IMG1.png" type="Texture" id=3]
+[ext_resource path="res://ACCESS/RUN/IMG_1.png" type="Texture" id=4]
+[ext_resource path="res://ACCESS/RUN/IMG3.png" type="Texture" id=5]
+[ext_resource path="res://ACCESS/RUN/IMG_2.png" type="Texture" id=6]
+[ext_resource path="res://ACCESS/RUN/IMG_5.png" type="Texture" id=7]
+[ext_resource path="res://ACCESS/JUMP/IMG3.png" type="Texture" id=8]
+[ext_resource path="res://ACCESS/IDLE/IMG1.png" type="Texture" id=9]
+[ext_resource path="res://ACCESS/JUMP/IMG4.png" type="Texture" id=10]
+[ext_resource path="res://ACCESS/HURT/IMG2.png" type="Texture" id=11]
+[ext_resource path="res://ACCESS/JUMP/IMG5.png" type="Texture" id=12]
+[ext_resource path="res://ACCESS/JUMP/IMG2.png" type="Texture" id=13]
+[ext_resource path="res://ACCESS/IDLE/IMG2.png" type="Texture" id=14]
+[ext_resource path="res://ACCESS/HURT/IMG1.png" type="Texture" id=15]
 
-[sub_resource type="Animation" id=1]
-resource_name = "HURT"
-loop = true
-step = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 11, 12 ]
-}
-
-[sub_resource type="Animation" id=2]
-resource_name = "IDLE"
-loop = true
-step = 0.5
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 11, 12 ]
-}
-
-[sub_resource type="Animation" id=3]
-resource_name = "JUMP"
-step = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 11, 9, 8, 7 ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "RUN"
-length = 0.35
-loop = true
-step = 0.04
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 2, 3, 4 ]
-}
-
-[sub_resource type="Animation" id=6]
-resource_name = "hurt"
-length = 0.5
-loop = true
-step = 0.04
+[sub_resource type="SpriteFrames" id=8]
+animations = [ {
+"frames": [ ExtResource( 15 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "HURT",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "IDLE",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 13 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "JUMP",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "RUN",
+"speed": 8.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 43, 51.5 )
+extents = Vector2( 19.5, 48.75 )
 
 [node name="player" type="KinematicBody2D"]
-position = Vector2( 117, 32 )
+position = Vector2( 6, 4 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="playerSheet" type="Sprite" parent="."]
-position = Vector2( -21.5, 45 )
-scale = Vector2( 1.17722, 0.751445 )
-texture = ExtResource( 2 )
-hframes = 18
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../playerSheet")
-anims/HURT = SubResource( 1 )
-anims/IDLE = SubResource( 2 )
-anims/JUMP = SubResource( 3 )
-anims/RESET = SubResource( 4 )
-anims/RUN = SubResource( 5 )
-anims/hurt = SubResource( 6 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 8 )
+animation = "RUN"
+frame = 3
+playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -15, 56.5 )
+position = Vector2( -5.5, 12.25 )
 shape = SubResource( 7 )

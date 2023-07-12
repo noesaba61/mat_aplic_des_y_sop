@@ -11,6 +11,7 @@ config_version=4
 [application]
 
 config/name="granjerita"
+run/main_scene="res://main/Control.tscn"
 config/icon="res://icon.png"
 
 [gui]
