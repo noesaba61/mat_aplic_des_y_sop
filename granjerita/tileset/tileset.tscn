@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://corecto.jpg" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 39.2, 35.875 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 13.625, 14.5 )
+scale = Vector2( 0.0327382, 0.0365853 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 756, 574, 84, 82 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite"]
+position = Vector2( -2.79999, -30.75 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/StaticBody2D"]
+position = Vector2( 2.79999, 30.7499 )
+shape = SubResource( 1 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 24.5625, 14.5 )
+scale = Vector2( 0.0342262, 0.0365853 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 672, 656, 84, 82 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2"]
+position = Vector2( -2.79999, -30.75 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2/StaticBody2D"]
+position = Vector2( 2.80005, 30.75 )
+shape = SubResource( 1 )

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://corecto.jpg" type="Texture" id=1]
+
+[node name="tilesetitem" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -13.25, 14 )
+scale = Vector2( 0.077381, 0.0638298 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 672, 470, 84, 94 )

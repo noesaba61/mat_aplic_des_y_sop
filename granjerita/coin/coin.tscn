@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://corecto.jpg" type="Texture" id=1]
+[ext_resource path="res://coin/coin.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 18.1108
+
+[node name="coin" type="Area2D"]
+position = Vector2( 66, 43 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -33.125, -22.75 )
+scale = Vector2( 0.383929, 0.303191 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 672, 470, 84, 94 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -33, -23 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="." to="." method="_on_coin_body_entered"]
